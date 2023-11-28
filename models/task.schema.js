@@ -4,7 +4,7 @@ const TaskSchema = new mongoose.Schema({
     title:String,
     duedate:String,
     importance:String,
-    createdby:String
+    createdby:{type:mongoose.Schema.Types.ObjectId,ref:"UserModel"}
 })
 
 const TaskModel = new mongoose.model("Task",TaskSchema)
