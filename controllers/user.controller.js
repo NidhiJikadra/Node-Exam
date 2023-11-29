@@ -37,15 +37,11 @@ const login = async(req,res)=>{
 }
 
 const create = async(req,res) =>{
-    let user = req.cookies
-    if(user){
-        // let data = await UserModel.findOne({id:req.cookies})
-        let task = await TaskModel.create(req.body).populate()
-        res.send(task)
-    }
-    else{
-        res.send("You are not logged in")
-    }
+    let {id} = req.cookies
+    console.log(id);
+    req.body.createdby = id
+    let task = await TaskModel.create(req.body)
+    res.send(task)
 }
 
 module.exports = {signup,login,create,home,loginshow,signupshow,createshow}
